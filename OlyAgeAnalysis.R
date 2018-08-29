@@ -385,35 +385,26 @@ GPA31F <-(gab31F / (glu21F + glu26F + glu31F + gab31F)) * 100 #11.602 %
 (bab31M / (blu21M + blu26M + blu31M + bab31M)) * 100 #13.143 %
 #-------------------------------------------------------------------------
 #plot percentage data (male)
-group <- c("Under 21", "21 - 25", "26 - 30", "Above 31")
+group <- c(" Under 21", "21 - 25", "26 - 30", "Above 31")
 percentageByAge <- c(GPU21M, GPU26M, GPU31M, GPA31M)
 
 goldMedalMale <- data.frame(group,percentageByAge)
 # Barplot
-goldBarRepresentation <- ggplot(goldMedalMale, aes(x="", y=percentageByAge, fill=group)) +
+goldBarRepresentation <- ggplot(goldMedalMale, aes(x=group, y=percentageByAge, fill=group)) +
        geom_bar(width = 1, stat = "identity") + ggtitle("Age of Male Gold \n Medal Winning Athletes") + 
-       ylab("Representation of Athlete Age (Percentage)") + labs(fill="Age Group (Years)")
+       xlab("Age Range (Years)") + ylab("Representation of Athlete Age (Percentage)") + 
+       labs(fill="Age Group (Years)") 
+goldBarRepresentation + theme(plot.title = element_text(hjust = .5))
 
-#Pie Chart
-goldPieRepresentation <- goldBarRepresentation + coord_polar("y", start=0)
-goldPieRepresentation + theme(plot.title = element_text(hjust = .5), 
-                              axis.title.y=element_blank(),
-                              axis.text.y=element_blank(),
-                              axis.ticks.y=element_blank())
 #------------------------------------------------------------------------
-group <- c("Under 21", "21 - 25", "26 - 30", "Above 31")
+group <- c(" Under 21", "21 - 25", "26 - 30", "Above 31")
 percentageByAge <- c(GPU21F, GPU26F, GPU31F, GPA31F)
 
 goldMedalMale <- data.frame(group,percentageByAge)
 # Barplot
-goldBarRepresentation <- ggplot(goldMedalMale, aes(x="", y=percentageByAge, fill=group)) +
+goldBarRepresentation <- ggplot(goldMedalMale, aes(x=group, y=percentageByAge, fill=group)) +
   geom_bar(width = 1, stat = "identity") + ggtitle("Age of Female Gold \n Medal Winning Athletes") + 
-  ylab("Representation of Athlete Age (Percentage)") + labs(fill="Age Group (Years)")
-
-#Pie Chart
-goldPieRepresentation <- goldBarRepresentation + coord_polar("y", start=0)
-goldPieRepresentation + theme(plot.title = element_text(hjust = .5), 
-                              axis.title.y=element_blank(),
-                              axis.text.y=element_blank(),
-                              axis.ticks.y=element_blank())
+  labs(fill="Age Group (Years)") + xlab("Age Range (Years)") + 
+  ylab("Representation of Athlete Age (Percentage)") 
+goldBarRepresentation + theme(plot.title = element_text(hjust = .5))
 #------------------------------------------------------------------------
