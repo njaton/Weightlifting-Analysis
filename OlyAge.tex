@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\graphicspath{ {./ageGraphs/} }
+
+%Create Title
+\title{Age Analysis in Olympic Weightlifting}
+\author{Nick Jaton}
+\date{August 2018}
+
+\begin{document}
+
+%build title
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+%Introduction
+\section{Introduction}
+	This is a quick dive into the age range of olympic athletes, specifically weightlifters. All data used in this study was acquired from Randi H Griffin's "120 years of Olympic history: athletes and results" which is available on Kaggle. This project started with just a curiosity regarding the average age of weightlifting athletes. Since starting this project, it has gone slightly deeper than that. Currently, this project is focused on how competitive each age bracket is. For a general overview of the how competitive each bracket is please read the "Results" section of this article. For seeing how all of the data that has been collected please download the accompanying R file.
+
+%Methods
+\section{Methods}
+	This project started with looking into the average age of weightlifters in the olympics and trying to find out how age would effect an athletes potential to earn a medal. Kaggle was used to gather the data needed for this project and R studio was used to analysis / graphing of the data. In order to do the analysis the data had to be separated using factors such as Age, Sex, and Medal Earned. This allowed for some quick graphs to be created in order to get a better understanding of the data. These graphs has not been included in this article but, will be created when running the current R code. The weightlifters needed to be broken up into different age ranges in order to better understand how age can factor into a athletes success. These categories are less than 21 years of age, 21  - 25 years of age,, 26 - 30 years of age,  and 31 years of age or higher.
+
+%Results
+\section{Results}
+	The average age of athletes that earned gold medals was younger than hypothesized. 24.59 years of age was the average age for gold medalists of both sexes. Generally speaking male athletes tend to be around 1.5 - 2 years older on average than female athletes. This can be seen in Figure: 1. This did not seem to change depending on the athletes medal earning status. Unexpectedly, the average age of medalist was not much lower than other non-medalists.
+\bigbreak
+\par
+\noindent
+	When breaking up the data into percentages it became very clear that athletes in their early 20's dominated the competition. Figure: 2 shows how each medals were distributed by age range. Male athletes in the 21 - 26 years of age  bracket took home 45.3\% of gold medals, 42.3\% of silver medals, and 41.1\% of bronze medals. With that being said, slightly under 43\% of male athletes were in this age range. Figure: 3 shows how many mens gold medals were acquired by each age bracket. In female athletes the same bracket took home 45.3\% of gold medals, 42.8\% of silver medals, and 41.1\% of bronze medals.  47.9\% of female athletes fit in this age range. Figure: 4 shows the same information as Figure:2 but, using the female athletes data. 
+
+
+%Conclusion
+\section{Conclusion}
+	The current state of this project has not shown that age has that large of a affect on an athlete's performance. Generally speaking athletes in between ages 21 - 30 win the most medals but also make up 77.3\% of male athletes and 72.6\% of female athletes. It is going to take a more detailed look into the data to find any true correlation between age and how competitive the athlete is.
+
+\newpage
+%Figures
+\section{Figures}
+
+\begin{figure}[ht!]
+\centering
+\subsection{Figure: 1}
+\centering
+\includegraphics[scale=.7]{AverageAgeofMedalWinningAthletes}
+\end{figure}
+
+\bigbreak
+
+\begin{figure}[ht!]
+\centering
+\subsection{Figure: 2}
+\centering
+\includegraphics[scale=.6]{MedalWinningAthletesByAge}
+\end{figure}
+
+\bigbreak
+
+\begin{figure}[ht!]
+\centering
+\subsection{Figure: 3}
+\centering
+\includegraphics[scale=.5]{AgeofMaleGoldMedalWinningAthletes}
+\end{figure}
+
+\bigbreak
+
+\begin{figure}[ht!]
+\centering
+\subsection{Figure: 4}
+\centering
+\includegraphics[scale=.5]{AverageAgeofFemaleGoldMedalWinningAthletes}
+\end{figure}
+
+\end{document}
+
