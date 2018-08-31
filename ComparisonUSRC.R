@@ -65,11 +65,11 @@ maleMedalRussia <- russianMaleAthletes[grepl("", russianMaleAthletes$Medal),]
 maleMedalChina <- chineseMaleAthletes[grepl("", chineseMaleAthletes$Medal),]
 
 #female athletes that placed
-femaleMedalUs <- americanFemaleAthletes[grepl("", americanFemaleAthletes$Medal),]
+femaleMedalUS <- americanFemaleAthletes[grepl("", americanFemaleAthletes$Medal),]
 femaleMedalRussia <- russianFemaleAthletes[grepl("", russianFemaleAthletes$Medal),]
 femaleMedalChina <- chineseFemaleAthletes[grepl("", chineseFemaleAthletes$Medal),]
 
-amountOfAthletesTotalMedals <- c(length(maleMedalUS$Name), length(femaleMedalUs$Name),
+amountOfAthletesTotalMedals <- c(length(maleMedalUS$Name), length(femaleMedalUS$Name),
                            length(maleMedalRussia$Name), length(femaleMedalRussia$Name), 
                            length(maleMedalChina$Name), length(femaleMedalChina$Name))
 dataforPlot2 <- data.frame(countries, amountOfAthletesTotalMedals, athleteSex)
@@ -80,3 +80,75 @@ plot2 <- ggplot(dataforPlot2, aes(fill=athleteSex, y=amountOfAthletesTotalMedals
   scale_fill_brewer(palette = "Dark2")
 plot2 + theme(plot.title = element_text(hjust = .5))
 #-----------------------------------------------------
+#find the percent of athletes in each team that take home a medal
+#-----------------------------------------------------
+#Find US Stats 
+#Male
+length(americanMaleAthletes$Medal) #139 
+maleGoldUS <- maleMedalUS[grepl("Gold", maleMedalUS$Medal),] #15
+maleSilverUS <- maleMedalUS[grepl("Silver", maleMedalUS$Medal),] #16
+maleBronzeUS <- maleMedalUS[grepl("Bronze", maleMedalUS$Medal),] #8 
+
+print(15 / 139) #.1079137
+print(16 / 139) #0.1151079
+print(8 / 139) #0.05755396
+print(length(maleMedalUS$Medal) / 139) #0.2805755
+
+#Female 
+length(americanFemaleAthletes$Medal) #15
+femaleGoldUS <- femaleMedalUS[grepl("Gold", femaleMedalUS$Medal),] #1
+femaleSilverUS <- femaleMedalUS[grepl("Silver", femaleMedalUS$Medal),] #0
+femaleBronzeUS <- femaleMedalUS[grepl("Bronze", femaleMedalUS$Medal),] #2
+
+print(1 / 15) #0.06666667
+print(0 / 15) #0
+print(2 / 15) #0.1333333
+print(length(femaleMedalUS$Medal) / 15) #0.2
+#-----------------------------------------------------
+#Find Russian Stats
+#Male
+length(russianMaleAthletes$Medal) #31
+maleGoldRussia <- maleMedalRussia[grepl("Gold", maleMedalRussia$Medal),] #3
+maleSilverRussia <- maleMedalRussia[grepl("Silver", maleMedalRussia$Medal),] #6
+maleBronzeRussia <- maleMedalRussia[grepl("Bronze", maleMedalRussia$Medal),] #7
+
+print(3 / 31) #0.09677419
+print(6 / 31) #0.1935484
+print(7 / 31) #0.2258065
+print(length(maleMedalRussia$Medal) / 31) #0.516129
+
+#Female 
+length(russianFemaleAthletes$Medal) #14
+femaleGoldRussia <- femaleMedalRussia[grepl("Gold", femaleMedalRussia$Medal),] #0
+femaleSilverRussia <- femaleMedalRussia[grepl("Silver", femaleMedalRussia$Medal),] #7
+femaleBronzeRussia <- femaleMedalRussia[grepl("Bronze", femaleMedalRussia$Medal),] #2
+
+print(0 / 14) #0
+print(7 / 14) #0.05
+print(2 / 14) #0.1428571
+print(length(femaleMedalRussia$Medal) / 14) #0.7142857
+#-----------------------------------------------------
+#Find Chinese Stats
+#Male
+length(chineseMaleAthletes$Medal) #73
+maleGoldChina <- maleMedalChina[grepl("Gold", maleMedalChina$Medal),] #17
+maleSilverChina <- maleMedalChina[grepl("Silver", maleMedalChina$Medal),] #14
+maleBronzeChina <- maleMedalChina[grepl("Bronze", maleMedalChina$Medal),] #8
+
+print(17 / 73) #0.2328767
+print(14 / 73) #0.1917808
+print(8 / 73) #0.109589
+print(length(maleMedalChina$Medal) / 73) #0.5342466
+
+#Female 
+length(chineseFemaleAthletes$Medal) #20
+femaleGoldChina <- femaleMedalChina[grepl("Gold", femaleMedalChina$Medal),] #17
+femaleSilverChina <- femaleMedalChina[grepl("Silver", femaleMedalChina$Medal),] #1
+femaleBronzeChina <- femaleMedalChina[grepl("Bronze", femaleMedalChina$Medal),] #0
+
+print(17 / 20) #0.85
+print(1 / 20) #0.05
+print(0 / 20) #0
+print(length(femaleMedalChina$Medal) / 20) #0.9
+#---------------------------------------------------
+
