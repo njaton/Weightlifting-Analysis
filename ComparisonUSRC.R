@@ -54,8 +54,11 @@ dataForPlot1 <- data.frame(countries, amountOfAthletesTotal, athleteSex)
 plot1 <- ggplot(dataForPlot1, aes(fill=athleteSex, y=amountOfAthletesTotal, x=countries)) +
   geom_bar(position="dodge", stat="identity") + ggtitle("Comparing Athlete Quantities by Team") + 
   xlab("Team (Country)") + ylab("Amount of Athletes") + labs(fill="Gender") + 
-  scale_fill_brewer(palette = "Accent")
-plot1 + theme(plot.title = element_text(hjust = .5))
+  scale_fill_brewer(palette = "Accent") +
+  geom_text(aes(label=amountOfAthletesTotal), position = position_dodge(width=0.9), vjust=-0.15)
+plot1 + theme(plot.title = element_text(hjust = .5), legend.position = "bottom",
+              legend.background = element_rect(color = "grey", 
+              fill = "grey90", size = 1, linetype = "solid"))
 #-------------------------------------------------------
 #Create the same graph for athletes that place in the top 3
 
@@ -77,8 +80,11 @@ dataforPlot2 <- data.frame(countries, amountOfAthletesTotalMedals, athleteSex)
 plot2 <- ggplot(dataforPlot2, aes(fill=athleteSex, y=amountOfAthletesTotalMedals, x=countries)) +
   geom_bar(position="dodge", stat="identity") + ggtitle("Comparing Quantities of Winning Athletes by Team") + 
   xlab("Team (Country)") + ylab("Amount of Athletes") + labs(fill="Gender") + 
-  scale_fill_brewer(palette = "Dark2")
-plot2 + theme(plot.title = element_text(hjust = .5))
+  scale_fill_brewer(palette = "Dark2") + 
+  geom_text(aes(label=amountOfAthletesTotalMedals), position = position_dodge(width=0.9), vjust=-0.15)
+plot2 + theme(plot.title = element_text(hjust = .5),legend.position = "bottom",
+              legend.background = element_rect(color = "grey", 
+              fill = "grey90", size = 1, linetype = "solid"))
 #-----------------------------------------------------
 #find the percent of athletes in each team that take home a medal
 #-----------------------------------------------------
@@ -154,9 +160,11 @@ print((length(femaleMedalChina$Medal) / 20) * 100)#90
 #Graph data regarding athlete amounts
 #Male Athletes
 countries2 <- c(rep("United States", 3), rep("Russia", 3), rep("China", 3))
-malePercentagePerTeam <- c(maleGoldUSPercent,maleSilverUSPercent, maleBronzeUSPercent, 
-                           maleGoldRussiaPercent, maleSilverRussiaPercent, maleBronzeRussiaPercent,
-                           maleGoldChinaPercent, maleSilverChinaPercent, maleBronzeChinaPercent)
+malePercentagePerTeam <- c(round(maleGoldUSPercent, digits = 2),round(maleSilverUSPercent, digits = 2), 
+                           round(maleBronzeUSPercent, digits = 2), round(maleGoldRussiaPercent, digits = 2), 
+                           round(maleSilverRussiaPercent, digits = 2), round(maleBronzeRussiaPercent, digits = 2),
+                           round(maleGoldChinaPercent, digits = 2), round(maleSilverChinaPercent, digits = 2),
+                           round(maleBronzeChinaPercent, digits = 2))
 medalsPlot3 <- rep(c("Gold", "Silver", "Bronze"), 3)
 dataForPlot3 <- data.frame(countries2, malePercentagePerTeam, medalsPlot3)
 
@@ -164,19 +172,47 @@ dataForPlot3 <- data.frame(countries2, malePercentagePerTeam, medalsPlot3)
 plot3 <- ggplot(dataForPlot3, aes(fill=medalsPlot3, y=malePercentagePerTeam, x=countries2)) +
   geom_bar(position="dodge", stat="identity") + ggtitle("Percent of Winning Athletes by Team (Male)") + 
   xlab("Team (Country)") + ylab("Winning Percentage Out of the Team") + labs(fill="Medal") + 
-  scale_fill_brewer(palette = "Set2")
-plot3 + theme(plot.title = element_text(hjust = .5))
+  scale_fill_brewer(palette = "Set2") + 
+  geom_text(aes(label=malePercentagePerTeam), position = position_dodge(width=0.9), vjust=-0.25)
+plot3 + theme(plot.title = element_text(hjust = .5), legend.position = c(0.9, 0.8),
+              legend.background = element_rect(color = "grey", 
+              fill = "grey90", size = 1, linetype = "solid"))
 #---------------------------------------------------
 #Graph data regarding athlete amounts
-#Femal Athletes
-femalePercentagePerTeam <- c(femaleGoldUSPercent, femaleSilverUSPercent, femaleBronzeUSPercent, 
-                             femaleGoldRussiaPercent, femaleSilverRussiaPercent, femaleBronzeRussiaPercent,
-                             femaleGoldChinaPercent, femaleSilverChinaPercent, femaleBronzeChinaPercent)
+#Female Athletes
+femalePercentagePerTeam <- c(round(femaleGoldUSPercent, digits = 2), round(femaleSilverUSPercent, digits = 2),
+                             round(femaleBronzeUSPercent, digits = 2), round(femaleGoldRussiaPercent, digits = 2),
+                             round(femaleSilverRussiaPercent, digits = 2), round(femaleBronzeRussiaPercent, digits = 2),
+                             round(femaleGoldChinaPercent, digits = 2), round(femaleSilverChinaPercent, digits = 2),
+                             round(femaleBronzeChinaPercent, digits = 2))
 dataForPlot4 <- data.frame(countries2,femalePercentagePerTeam, medalsPlot3)
 
 #Plot4
-plot3 <- ggplot(dataForPlot4, aes(fill=medalsPlot3, y=femalePercentagePerTeam, x=countries2)) +
+plot4 <- ggplot(dataForPlot4, aes(fill=medalsPlot3, y=femalePercentagePerTeam, x=countries2)) +
   geom_bar(position="dodge", stat="identity") + ggtitle("Percent of Winning Athletes by Team (Female)") + 
   xlab("Team (Country)") + ylab("Winning Percentage") + labs(fill="Medal") + 
-  scale_fill_brewer(palette = "Set2")
-plot3 + theme(plot.title = element_text(hjust = .5))
+  scale_fill_brewer(palette = "Set2") + 
+  geom_text(aes(label=femalePercentagePerTeam), position = position_dodge(width=0.9), vjust=-0.25)
+plot4 + theme(plot.title = element_text(hjust = .5), legend.position = c(0.9, 0.8),
+              legend.background = element_rect(color = "grey", 
+              fill = "grey90", size = 1, linetype = "solid"))
+#--------------------------------------------------
+#Quick Math for Results section 
+
+#Percent of male athlete quantities against US
+print(73 / 139 * 100) #China 
+print(31 / 139 * 100) #Russio
+
+#Chinese percent of medal earning male athletes
+print(39 / 73 * 100) #52.42%
+#Russsian percent of medal earning male athletes
+print(16 / 31 * 100) #51.61%
+#US percent of medal earning male athletes
+print(39 / 139 * 100) #28.06%
+
+#Chinese percent of medal earning female athletes
+print(18 / 20 * 100) #90%
+#Russsian percent of medal earning female athletes
+print(10 / 14 * 100) #71.43%
+#US percent of medal earning feathletes
+print(3 / 15 * 100) #20%
